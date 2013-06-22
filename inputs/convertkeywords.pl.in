@@ -1,5 +1,7 @@
 use Regexp::Assemble;
 use Text::Template;
+
+<<< LSL DESCRIPTION >>>
   
 my $ra = Regexp::Assemble->new;
 <<< LSL CONSTANTS >>>
@@ -20,7 +22,8 @@ my $invalids = $ra->as_string;
 my $template = Text::Template->new(SOURCE => 'inputs/LSL.tmLanguage.tmpl')
   or die "Couldn't construct template: $Text::Template::ERROR";
 
-my %vars = (valid_constants => $constants,
+my %vars = (description => $description,
+            valid_constants => $constants,
             valid_functions => $functions,
             valid_events => $events,
             invalids => $invalids);
