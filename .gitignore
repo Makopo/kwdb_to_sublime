@@ -1,0 +1,3 @@
+*.pyc
+/lsl2dfg/LSL2dfg.py
+/kwdb.xml

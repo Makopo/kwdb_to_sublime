@@ -1,0 +1,5 @@
+use Regexp::Assemble;
+  
+my $ra = Regexp::Assemble->new;
+<<< LSL KEYWORDS >>>
+print $ra->anchor_word_begin->anchor_word_end->as_string, "\n";
