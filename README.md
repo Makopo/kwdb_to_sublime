@@ -13,6 +13,6 @@ Needed:
 
 Perl Modules:
 
-* Text::MicroTemplate
+* Text::Template
 * Regexp::Assemble
 
