@@ -1,3 +1,4 @@
 *.pyc
+/outputs
 /lsl2dfg/LSL2dfg.py
 /kwdb.xml
