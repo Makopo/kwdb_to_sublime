@@ -1,0 +1,61 @@
+#!/usr/bin/env python
+
+import sys
+
+def output(document, defaultdescs, databaseversion, infilename, outfilename, lang, tag):
+
+  constants = []
+  events = []
+  functions = []
+  invalids = []
+  for element in document:
+    if 'status' not in element or element['status'] == 'normal':
+      if element["cat"] == "constant":
+        constants.append(element)
+      elif element["cat"] == "event":
+        events.append(element)
+      elif element["cat"] == "function":
+        functions.append(element)
+    elif element['status'] in ['deprecated','godmode']:
+        invalids.append(element)
+
+  if infilename is not None:
+    inf = open(infilename, "r")
+  else:
+    inf = sys.stdin
+
+  try:
+    inputlines = inf.readlines()
+
+  finally:
+    if infilename is not None:
+      inf.close()
+
+  if outfilename is not None:
+    outf = open(outfilename, "w")
+  else:
+    outf = sys.stdout
+
+  try:
+    for line in inputlines:
+      if line.startswith("<<< %s CONSTANTS >>>" % tag):
+        for entry in constants:
+          outf.write("$ra->add( '" + entry["name"] + "' );\n")
+      elif line.startswith("<<< %s EVENTS >>>" % tag):
+        for entry in events:
+          outf.write("$ra->add( '" + entry["name"] + "' );\n")
+      elif line.startswith("<<< %s FUNCTIONS >>>" % tag):
+        for entry in functions:
+          outf.write("$ra->add( '" + entry["name"] + "' );\n")
+      elif line.startswith("<<< %s INVALIDS >>>" % tag):
+        for entry in invalids:
+          outf.write("$ra->add( '" + entry["name"] + "' );\n")
+      else:
+        outf.write(line)
+
+  finally:
+    if outfilename is not None:
+      outf.close()
+
+
+pass

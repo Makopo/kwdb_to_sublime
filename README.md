@@ -4,3 +4,15 @@ This is the tool which fetches newest version of LSL/OSSL keywords from [kwdb](h
 For now, simply run ./generate.sh script.
 
 Actively developing.
+
+Needed:
+
+* curl
+* perl
+* python
+
+Perl Modules:
+
+* Text::MicroTemplate
+* Regexp::Assemble
+
