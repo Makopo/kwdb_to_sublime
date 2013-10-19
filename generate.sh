@@ -10,3 +10,5 @@ python lsl2dfg/LSL2dfg.py -u -d kwdb.xml -f sublime_completions -g sl -t LSL -i 
 python lsl2dfg/LSL2dfg.py -u -d kwdb.xml -f sublime_completions -g os -t OSSL -i inputs/OSSL.sublime-completions.in -o "$OUTPUT_DIR/OSSL.sublime-completions" -y
 python lsl2dfg/LSL2dfg.py -u -d kwdb.xml -f sublime_tmLanguage -g sl -t LSL -i inputs/convertkeywords.pl.in | perl > "$OUTPUT_DIR/lsl.tmLanguage"
 python lsl2dfg/LSL2dfg.py -u -d kwdb.xml -f sublime_tmLanguage -g os -t OSSL -i inputs/convertkeywords.pl.in | perl > "$OUTPUT_DIR/ossl.tmLanguage"
+
+python lsl2dfg/LSL2dfg.py --version --grid=sl,os --database=kwdb.xml
