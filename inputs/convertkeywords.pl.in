@@ -2,7 +2,7 @@ use Regexp::Assemble;
 use Text::Template;
 
 <<< DESCRIPTION >>>
-  
+
 my $ra = Regexp::Assemble->new;
 <<< CONSTANTS >>>
 my $constants = $ra->as_string;
