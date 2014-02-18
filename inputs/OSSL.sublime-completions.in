@@ -14,10 +14,14 @@
 		"vector ",
 		"jump ",
 		"return",
-// NOTE: Following definitions are from kwdb (https://code.google.com/p/kwdb/).
-//       If you have any question about the definitions itself, 
-//       please check the kwdb source and inquire of the kwdb maintener first.
-//       If kwdb have updated and mine is still old, then please poke me.
+// NOTE: Following definitions are taken from
+//
+//                  kwdb (https://code.google.com/p/kwdb/)
+//
+//       Should you have issues with this file please check the database version
+//       below against the database version of the file at kwdb. Should this
+//       version be old, please notify me. Should this file be up-to-date,
+//       please check with the kwdb project to have your issues resolved.
 //
 <<< OSSL KEYWORDS >>>
 	]
