@@ -9,7 +9,7 @@
 		"float ",
 		"key ",
 		"list ",
-		"quaternion ",
+//		"quaternion ",
 		"rotation ",
 		"string ",
 		"vector ",
