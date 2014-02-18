@@ -5,14 +5,14 @@
 	[
 // keywords
 		"state ",
-		"integer",
-		"float",
-		"key",
-		"list",
-		"quaternion",
-		"rotation",
-		"string",
-		"vector",
+		"integer ",
+		"float ",
+		"key ",
+		"list ",
+		"quaternion ",
+		"rotation ",
+		"string ",
+		"vector ",
 		"jump ",
 		"return",
 // NOTE: Following definitions are taken from
