@@ -5,7 +5,6 @@
 	[
 // keywords
 		"state ",
-		"bool ",
 		"integer ",
 		"float ",
 		"key ",
