@@ -61,5 +61,8 @@ def output(document, defaultdescs, databaseversion, infilename, outfilename, lan
     if outfilename is not None:
       outf.close()
 
+      # output for this function is perl script.
+      # usually this function is called without outfilename, hence written in sysout.
+      # after then perl will execute the contents in outf.
 
 pass
