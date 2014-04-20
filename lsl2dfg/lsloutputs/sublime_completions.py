@@ -53,18 +53,21 @@ def output(document, defaultdescs, databaseversion, infilename, outfilename, lan
       if line.startswith("<<< CONSTANTS >>>"):
         outf.write("my $cat = 'constants';\n")
         for entry in constants:
-          outf.write("&print_snippet($template, $cat, $version, '{0}', '', '{1}');\n"
-           .format(entry["name"], entry["type"]))
+          # print entry
+          outf.write("&print_snippet($template, $cat, $version, '{0}', '{1}', '', '{2}');\n"
+           .format(entry["grid"] if entry.has_key("grid") else "sl os", entry["name"], entry["type"]))
       elif line.startswith("<<< EVENTS >>>"):
         outf.write("my $cat = 'events';\n")
         for entry in events:
-          outf.write("&print_snippet($template, $cat, $version, '{0}', '{1}');\n"
-           .format(entry["name"], get_signature("{type} ${{{idx}:{name}}}", entry)))
+          # print entry
+          outf.write("&print_snippet($template, $cat, $version, '{0}', '{1}', '{2}');\n"
+           .format(entry["grid"] if entry.has_key("grid") else "sl os", entry["name"], get_signature("{type} ${{{idx}:{name}}}", entry)))
       elif line.startswith("<<< FUNCTIONS >>>"):
         outf.write("my $cat = 'functions';\n")
         for entry in functions:
-          outf.write("&print_snippet($template, $cat, $version, '{0}', '{1}', '{2}');\n"
-           .format(entry["name"], get_signature("${{{idx}:{type} {name}}}", entry), 
+          # print entry
+          outf.write("&print_snippet($template, $cat, $version, '{0}', '{1}', '{2}', '{3}');\n"
+           .format(entry["grid"] if entry.has_key("grid") else "sl os", entry["name"], get_signature("${{{idx}:{type} {name}}}", entry), 
             entry["type"] if entry.has_key("type") else "void"))
       elif line.startswith("<<< COMMON >>>"):
           outf.write("my $version = '{0}';\n".format(databaseversion))
