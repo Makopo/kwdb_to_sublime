@@ -19,18 +19,6 @@ def output(document, defaultdescs, databaseversion, infilename, outfilename, lan
     sign = sign + ")"
     return sign
 
-  constants = []
-  events = []
-  functions = []
-  for element in document:
-    if 'status' not in element or element['status'] == 'normal':
-      if element["cat"] == "constant":
-        constants.append(element)
-      elif element["cat"] == "event":
-        events.append(element)
-      elif element["cat"] == "function":
-        functions.append(element)
-
   if infilename is not None:
     inf = open(infilename, "r")
   else:
@@ -50,27 +38,21 @@ def output(document, defaultdescs, databaseversion, infilename, outfilename, lan
 
   try:
     for line in inputlines:
-      if line.startswith("<<< CONSTANTS >>>"):
-        outf.write("my $cat = 'constants';\n")
-        for entry in constants:
-          # print entry
-          outf.write("&print_snippet($template, $cat, $version, '{0}', '{1}', '', '{2}');\n"
-           .format(entry["grid"] if entry.has_key("grid") else "sl os", entry["name"], entry["type"]))
-      elif line.startswith("<<< EVENTS >>>"):
-        outf.write("my $cat = 'events';\n")
-        for entry in events:
-          # print entry
-          outf.write("&print_snippet($template, $cat, $version, '{0}', '{1}', '{2}');\n"
-           .format(entry["grid"] if entry.has_key("grid") else "sl os", entry["name"], get_signature("{type} ${{{idx}:{name}}}", entry)))
-      elif line.startswith("<<< FUNCTIONS >>>"):
-        outf.write("my $cat = 'functions';\n")
-        for entry in functions:
-          # print entry
-          outf.write("&print_snippet($template, $cat, $version, '{0}', '{1}', '{2}', '{3}');\n"
-           .format(entry["grid"] if entry.has_key("grid") else "sl os", entry["name"], get_signature("${{{idx}:{type} {name}}}", entry), 
-            entry["type"] if entry.has_key("type") else "void"))
-      elif line.startswith("<<< COMMON >>>"):
-          outf.write("my $version = '{0}';\n".format(databaseversion))
+      if line.startswith("<<< LINES >>>"):
+        outf.write("my $version = '{0}';\n".format(databaseversion))
+        for element in document:
+          if 'status' not in element or element['status'] == 'normal':
+            grid = element["grid"] if element.has_key("grid") else "sl os"
+            if element["cat"] == "constant":
+                outf.write("&print_snippet($template_constants, 'constants', $version, '{0}', '{1}', '', '{2}');\n"
+                 .format(grid, element["name"], element["type"]))
+            elif element["cat"] == "event":
+                outf.write("&print_snippet($template_events, 'events', $version, '{0}', '{1}', '{2}');\n"
+                 .format(grid, element["name"], get_signature("{type} ${{{idx}:{name}}}", element)))
+            elif element["cat"] == "function":
+                outf.write("&print_snippet($template_functions, 'functions', $version, '{0}', '{1}', '{2}', '{3}');\n"
+                 .format(grid, element["name"], get_signature("${{{idx}:{type} {name}}}", element), 
+                  element["type"] if element.has_key("type") else "void"))
       else:
         outf.write(line)
 
