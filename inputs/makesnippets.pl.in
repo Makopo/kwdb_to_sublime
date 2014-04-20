@@ -1,7 +1,5 @@
 use Text::Template;
 
-<<< DESCRIPTION >>>
-
 # for constants
 my $template = Text::Template->new(SOURCE => 'templates/completions-constants.tmpl')
 	or die "Couldn't construct template: $Text::Template::ERROR";
@@ -18,8 +16,8 @@ my $template = Text::Template->new(SOURCE => 'templates/completions-events.tmpl'
 <<< EVENTS >>>
 
 sub print_snippet {
-	my ($template, $cat, $description, $name, $content, $value) = @_;
-	my %vars = (description => $description, name => $name, content => $content, value => $value);
+	my ($template, $cat, $version, $name, $content, $value) = @_;
+	my %vars = (version => $version, name => $name, content => $content, value => $value);
 	open (FILEHANDLE, ">" . $ENV{'OUTPUT_DIR'} . "/snippets/" . $cat . "/" . $name . ".sublime-snippet")
 		or die "Can't open file: $!";
 	$template->fill_in(HASH => \%vars, DELIMITERS => [ '[@--', '--@]' ], OUTPUT => \*FILEHANDLE)

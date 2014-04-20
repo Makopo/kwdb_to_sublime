@@ -1,7 +1,7 @@
 use Regexp::Assemble;
 use Text::Template;
 
-<<< DESCRIPTION >>>
+<<< VERSION >>>
   
 my $ra = Regexp::Assemble->new;
 <<< CONSTANTS >>>
@@ -22,7 +22,7 @@ my $invalids = $ra->as_string;
 my $template = Text::Template->new(SOURCE => $infile)
   or die "Couldn't construct template: $Text::Template::ERROR";
 
-my %vars = (description => $description,
+my %vars = (version => $version,
             valid_constants => $constants,
             valid_functions => $functions,
             valid_events => $events,
