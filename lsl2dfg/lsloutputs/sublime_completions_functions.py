@@ -9,7 +9,8 @@ import sys
 def output(document, defaultdescs, databaseversion, infilename, outfilename, lang, tag):
 
   def get_signature(element):
-    sign = "{{ \"trigger\": \"{name}\", \"contents\": \"{name}(".format(name=element["name"])
+    sign = "{{ \"trigger\": \"{name}\\t({type}) function\", \"contents\": \"{name}("\
+      .format(name=element["name"], type=element["type"] if element.has_key("type") else "void")
     first = True
     if "params" in element:
       cnt = 1;
@@ -23,12 +24,13 @@ def output(document, defaultdescs, databaseversion, infilename, outfilename, lan
     sign = sign + ")\" }"
     return sign
 
+  # starting main sequence here
+
   functions = []
   for element in document:
     if 'status' not in element or element['status'] == 'normal':
       if element["cat"] == "function":
         functions.append(element)
-
   functions.sort(lambda x,y: cmp(x["name"],y["name"]))
 
   if infilename is not None:
