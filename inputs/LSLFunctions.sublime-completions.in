@@ -3,17 +3,6 @@
 
 	"completions":
 	[
-// keywords
-		"state ",
-		"integer ",
-		"float ",
-		"key ",
-		"list ",
-		"rotation ",
-		"string ",
-		"vector ",
-		"jump ",
-		"return",
 // NOTE: Following definitions are taken from
 //
 //                  kwdb (https://code.google.com/p/kwdb/)
