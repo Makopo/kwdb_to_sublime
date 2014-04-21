@@ -1,0 +1,17 @@
+{
+	"scope": "meta.function.body.ossl, meta.event.body.ossl",
+
+	"completions":
+	[
+// NOTE: Following definitions are taken from
+//
+//                  kwdb (https://code.google.com/p/kwdb/)
+//
+//       Should you have issues with this file please check the database version
+//       below against the database version of the file at kwdb. Should this
+//       version be old, please notify me. Should this file be up-to-date,
+//       please check with the kwdb project to have your issues resolved.
+//
+<<< LINES >>>
+	]
+}

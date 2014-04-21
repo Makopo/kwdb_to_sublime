@@ -4,7 +4,7 @@ import sys
 
 def output(document, defaultdescs, databaseversion, infilename, outfilename, lang, tag):
 
-  def get_signature(parameter_format, element):
+  def get_signature(element):
     sign = element["name"] + "("
     first = True
     if "params" in element:
@@ -14,7 +14,7 @@ def output(document, defaultdescs, databaseversion, infilename, outfilename, lan
           first = False
         else:
           sign = sign + ", "
-        sign = sign + parameter_format.format(idx=cnt, name=param["name"], type=param["type"])
+        sign = sign + "{type} ${{{idx}:{name}}}".format(idx=cnt, name=param["name"], type=param["type"])
         cnt += 1;
     sign = sign + ")"
     return sign
@@ -43,16 +43,9 @@ def output(document, defaultdescs, databaseversion, infilename, outfilename, lan
         for element in document:
           if 'status' not in element or element['status'] == 'normal':
             grid = element["grid"] if element.has_key("grid") else "sl os"
-            if element["cat"] == "constant":
-                outf.write("&print_snippet($template_constants, 'constants', $version, '{0}', '{1}', '', '{2}');\n"
-                 .format(grid, element["name"], element["type"]))
-            elif element["cat"] == "event":
+            if element["cat"] == "event":
                 outf.write("&print_snippet($template_events, 'events', $version, '{0}', '{1}', '{2}');\n"
-                 .format(grid, element["name"], get_signature("{type} ${{{idx}:{name}}}", element)))
-            elif element["cat"] == "function":
-                outf.write("&print_snippet($template_functions, 'functions', $version, '{0}', '{1}', '{2}', '{3}');\n"
-                 .format(grid, element["name"], get_signature("${{{idx}:{type} {name}}}", element), 
-                  element["type"] if element.has_key("type") else "void"))
+                 .format(grid, element["name"], get_signature(element)))
       else:
         outf.write(line)
 

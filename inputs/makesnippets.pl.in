@@ -1,9 +1,5 @@
 use Text::Template;
 
-my $template_constants = Text::Template->new(SOURCE => 'templates/completions-constants.tmpl')
-	or die "Couldn't construct template: $Text::Template::ERROR";
-my $template_functions = Text::Template->new(SOURCE => 'templates/completions-functions.tmpl')
-	or die "Couldn't construct template: $Text::Template::ERROR";
 my $template_events = Text::Template->new(SOURCE => 'templates/completions-events.tmpl')
 	or die "Couldn't construct template: $Text::Template::ERROR";
 
