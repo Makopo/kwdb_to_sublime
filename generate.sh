@@ -5,8 +5,8 @@ rm kwdb.xml
 
 mkdir -p $OUTPUT_DIR/snippets/events
 
-curl https://kwdb.googlecode.com/hg/lsl2dfg/LSL2dfg.py -o lsl2dfg/LSL2dfg.py
-curl https://kwdb.googlecode.com/hg/database/kwdb.xml -o kwdb.xml
+curl https://bitbucket.org/api/1.0/repositories/Sei_Lisa/kwdb/raw/default/lsl2dfg/LSL2dfg.py -o lsl2dfg/LSL2dfg.py
+curl https://bitbucket.org/api/1.0/repositories/Sei_Lisa/kwdb/raw/default/database/kwdb.xml -o kwdb.xml
 
 python lsl2dfg/LSL2dfg.py -u -d kwdb.xml -f sublime_completions_constants -g sl -i inputs/LSLConstants.sublime-completions.in -o $OUTPUT_DIR/LSLConstants.sublime-completions
 python lsl2dfg/LSL2dfg.py -u -d kwdb.xml -f sublime_completions_constants -g os -i inputs/OSSLConstants.sublime-completions.in -o $OUTPUT_DIR/OSSLConstants.sublime-completions
