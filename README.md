@@ -8,7 +8,7 @@ Needed:
 
 * curl
 * perl
-* python
+* python **2.X required**
 
 Perl Modules:
 
