@@ -35,6 +35,20 @@ def output(document, defaultdescs, databaseversion, infilename, outfilename, lan
     elif (elemtype == "c"):
       sign = "\"{name}\": \"Constant: {type} <a href=\\\"{urlprefix}{name}\\\">{name}</a> = {value}"\
         .format(name=element["name"], type=element["type"], urlprefix=urlprefix, value="dummy")
+    elif (elemtype == "e"):
+      sign = "\"{name}\": \"Event: <a href=\\\"{urlprefix}{name}\\\">{name}</a>("\
+        .format(name=element["name"], type=element["type"] if element.has_key("type") else "void", \
+                urlprefix=urlprefix)
+      first = True
+      if "params" in element:
+        for param in element["params"]:
+          if first:
+            first = False
+          else:
+            sign = sign + ", "
+          sign = sign + "{type} {name}".format(name=param["name"], type=param["type"])
+      sign = sign + "){ ; }"
+
 
     # status line
     try:
@@ -64,13 +78,17 @@ def output(document, defaultdescs, databaseversion, infilename, outfilename, lan
 
   functions = []
   constants = []
+  events = []
   for element in document:
     if element["cat"] == "function":
       functions.append(element)
     elif element["cat"] == "constant":
       constants.append(element)
+    elif element["cat"] == "event":
+      events.append(element)
   functions.sort(lambda x,y: cmp(x["name"],y["name"]))
   constants.sort(lambda x,y: cmp(x["name"],y["name"]))
+  events.sort(lambda x,y: cmp(x["name"],y["name"]))
 
   if infilename is not None:
     inf = open(infilename, "r")
@@ -96,9 +114,11 @@ def output(document, defaultdescs, databaseversion, infilename, outfilename, lan
         outf.write(line)
       else:
         outf.write("\t")
-        outf.write(",\n\t".join([get_signature(element, "f") for element in functions]).encode('utf8'))
+        outf.write(",\n\t".join([get_signature(element, "f") for element in functions]))
         outf.write(",\n\t")
-        outf.write(",\n\t".join([get_signature(element, "c") for element in constants]).encode('utf8'))
+        outf.write(",\n\t".join([get_signature(element, "c") for element in constants]))
+        outf.write(",\n\t")
+        outf.write(",\n\t".join([get_signature(element, "e") for element in events]))
         outf.write("\n")
 
   finally:
