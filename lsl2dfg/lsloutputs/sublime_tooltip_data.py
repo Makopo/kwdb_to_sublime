@@ -9,7 +9,7 @@ import sys
 def output(document, defaultdescs, databaseversion, infilename, outfilename, lang, tag):
 
   def get_signature(element):
-    sign = "\"{name}\": \"Function: {type} {name}("\
+    sign = "\"{name}\": \"Function: {type} <a href=\\\"http://wiki.secondlife.com/wiki/{name}\\\">{name}</a>("\
       .format(name=element["name"], type=element["type"] if element.has_key("type") else "void")
     first = True
     if "params" in element:
@@ -19,7 +19,7 @@ def output(document, defaultdescs, databaseversion, infilename, outfilename, lan
           first = False
         else:
           sign = sign + ", "
-        sign = sign + "{type} <a href=\\\"http://wiki.secondlife.com/wiki/{name}\\\">{name}</a>".format(idx=cnt, name=param["name"], type=param["type"])
+        sign = sign + "{type} {name}".format(idx=cnt, name=param["name"], type=param["type"])
         cnt += 1;
     sign = sign + ");"
     try:
