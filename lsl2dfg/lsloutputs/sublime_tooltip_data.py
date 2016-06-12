@@ -13,20 +13,24 @@ def output(document, defaultdescs, databaseversion, infilename, outfilename, lan
       .format(name=element["name"], type=element["type"] if element.has_key("type") else "void")
     first = True
     if "params" in element:
-      cnt = 1;
       for param in element["params"]:
         if first:
           first = False
         else:
           sign = sign + ", "
-        sign = sign + "{type} {name}".format(idx=cnt, name=param["name"], type=param["type"])
-        cnt += 1;
+        sign = sign + "{type} {name}".format(name=param["name"], type=param["type"])
     sign = sign + ");"
+    try:
+      status = element["status"]
+      if not (status == "normal"):
+        sign = sign + "<p style=\\\"color:#fff;background-color:#820124;\\\">{status}</p>".format(status=status)
+    except KeyError:
+      pass
     try:
       desc = element["desc"]["en"]["text"].replace('\n', '<br>').replace('"', '\\\"')
       sign = sign + "<p>{desc}</p>".format(desc=desc)
     except KeyError:
-      sign = sign + "<p>[no description]</p>"
+      pass
     sign = sign + "<p>{delay} Forced Delay, {energy} Energy</p>"\
       .format(delay=float(element["delay"]), energy=float(element["energy"]))
     sign = sign + "\""
@@ -36,9 +40,8 @@ def output(document, defaultdescs, databaseversion, infilename, outfilename, lan
 
   functions = []
   for element in document:
-    if 'status' not in element or element['status'] == 'normal':
-      if element["cat"] == "function":
-        functions.append(element)
+    if element["cat"] == "function":
+      functions.append(element)
   functions.sort(lambda x,y: cmp(x["name"],y["name"]))
 
   if infilename is not None:
