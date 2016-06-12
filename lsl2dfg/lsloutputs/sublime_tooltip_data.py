@@ -9,8 +9,15 @@ import sys
 def output(document, defaultdescs, databaseversion, infilename, outfilename, lang, tag):
 
   def get_signature(element):
-    sign = "\"{name}\": \"Function: {type} <a href=\\\"http://wiki.secondlife.com/wiki/{name}\\\">{name}</a>("\
-      .format(name=element["name"], type=element["type"] if element.has_key("type") else "void")
+    urlprefix = "http://wiki.secondlife.com/wiki/"
+    try:
+        if not (element["grid"]).startswith("sl"):
+          urlprefix = "http://opensimulator.org/wiki/"
+    except KeyError:
+        pass
+    sign = "\"{name}\": \"Function: {type} <a href=\\\"{urlprefix}{name}\\\">{name}</a>("\
+      .format(name=element["name"], type=element["type"] if element.has_key("type") else "void", \
+              urlprefix=urlprefix)
     first = True
     if "params" in element:
       for param in element["params"]:
