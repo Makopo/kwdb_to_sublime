@@ -34,7 +34,8 @@ def output(document, defaultdescs, databaseversion, infilename, outfilename, lan
       sign = sign + ");"
     elif (elemtype == "c"):
       sign = "\"{name}\": \"Constant: {type} <a href=\\\"{urlprefix}{name}\\\">{name}</a> = {value}"\
-        .format(name=element["name"], type=element["type"], urlprefix=urlprefix, value="dummy")
+        .format(name=element["name"], type=element["type"], urlprefix=urlprefix, \
+                value="[EOF]" if (element["name"] == "EOF") else element["value"].encode('ascii', errors='backslashreplace').replace('\\','\\\\'))
     elif (elemtype == "e"):
       sign = "\"{name}\": \"Event: <a href=\\\"{urlprefix}{name}\\\">{name}</a>("\
         .format(name=element["name"], type=element["type"] if element.has_key("type") else "void", \
