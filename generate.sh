@@ -1,4 +1,5 @@
 export OUTPUT_DIR=${CONVERTER_OUTPUT_DIR:-outputs}
+export OUTPUT_DIR_TOOLTIP=${CONVERTER_OUTPUT_DIR_TOOLTIP:-outputs}
 
 rm lsl2dfg/LSL2dfg.py
 rm kwdb.xml
@@ -18,6 +19,6 @@ python lsl2dfg/LSL2dfg.py -u -d kwdb.xml -f sublime_tmLanguage -g sl -t LSL -i i
 python lsl2dfg/LSL2dfg.py -u -d kwdb.xml -f sublime_tmLanguage -g os -t OSSL -i inputs/convertkeywords.pl.in | perl > "$OUTPUT_DIR/ossl.tmLanguage"
 
 # for tooltip plugin
-python lsl2dfg/LSL2dfg.py -u -d kwdb.xml -f sublime_tooltip_data -g sl,os -i inputs/tooltipdata.json.in -o $OUTPUT_DIR/tooltipdata.json 
+python lsl2dfg/LSL2dfg.py -u -d kwdb.xml -f sublime_tooltip_data -g sl,os -i inputs/tooltipdata.json.in -o $OUTPUT_DIR_TOOLTIP/tooltipdata.json 
 
 python lsl2dfg/LSL2dfg.py --version --grid=sl,os --database=kwdb.xml
