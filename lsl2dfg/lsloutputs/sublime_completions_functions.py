@@ -31,7 +31,7 @@ def output(document, defaultdescs, databaseversion, infilename, outfilename, lan
     if 'status' not in element or element['status'] == 'normal':
       if element["cat"] == "function":
         functions.append(element)
-  functions.sort(lambda x,y: cmp(x["name"],y["name"]))
+  functions.sort(key = lambda x: x["name"])
 
   if infilename is not None:
     inf = open(infilename, "r")

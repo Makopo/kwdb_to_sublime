@@ -19,7 +19,7 @@ def output(document, defaultdescs, databaseversion, infilename, outfilename, lan
     if 'status' not in element or element['status'] == 'normal':
       if element["cat"] == "constant":
         constants.append(element)
-  constants.sort(lambda x,y: cmp(x["name"],y["name"]))
+  constants.sort(key = lambda x: x["name"])
 
   if infilename is not None:
     inf = open(infilename, "r")

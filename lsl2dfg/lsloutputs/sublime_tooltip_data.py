@@ -87,9 +87,9 @@ def output(document, defaultdescs, databaseversion, infilename, outfilename, lan
       constants.append(element)
     elif element["cat"] == "event":
       events.append(element)
-  functions.sort(lambda x,y: cmp(x["name"],y["name"]))
-  constants.sort(lambda x,y: cmp(x["name"],y["name"]))
-  events.sort(lambda x,y: cmp(x["name"],y["name"]))
+  functions.sort(key = lambda x: x["name"])
+  constants.sort(key = lambda x: x["name"])
+  events.sort(key = lambda x: x["name"])
 
   if infilename is not None:
     inf = open(infilename, "r")
