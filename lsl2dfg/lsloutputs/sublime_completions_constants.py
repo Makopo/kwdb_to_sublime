@@ -10,7 +10,7 @@ def output(document, defaultdescs, databaseversion, infilename, outfilename, lan
 
   def get_signature(element):
     return "{{ \"trigger\": \"{name}\\t{type}\", \"contents\": \"{name}\" }}".\
-      format(name=element["name"], type=element["type"] if element.has_key("type") else "void")
+      format(name=element["name"], type=element["type"] if "type" in element else "void")
 
   # starting main sequence here
 

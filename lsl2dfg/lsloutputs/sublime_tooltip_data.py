@@ -21,7 +21,7 @@ def output(document, defaultdescs, databaseversion, infilename, outfilename, lan
     # function definition line
     if (elemtype == "f"):
       sign = "\"{name}\": \"Function: {type} <a href=\\\"{urlprefix}{name}\\\">{name}</a>("\
-        .format(name=element["name"], type=element["type"] if element.has_key("type") else "void", \
+        .format(name=element["name"], type=element["type"] if "type" in element else "void", \
                 urlprefix=urlprefix)
       first = True
       if "params" in element:
@@ -38,7 +38,7 @@ def output(document, defaultdescs, databaseversion, infilename, outfilename, lan
                 value="[EOF]" if (element["name"] == "EOF") else element["value"].encode('ascii', errors='backslashreplace').replace('\\','\\\\'))
     elif (elemtype == "e"):
       sign = "\"{name}\": \"Event: <a href=\\\"{urlprefix}{name}\\\">{name}</a>("\
-        .format(name=element["name"], type=element["type"] if element.has_key("type") else "void", \
+        .format(name=element["name"], type=element["type"] if "type" in element else "void", \
                 urlprefix=urlprefix)
       first = True
       if "params" in element:

@@ -42,7 +42,7 @@ def output(document, defaultdescs, databaseversion, infilename, outfilename, lan
         outf.write("my $version = '{0}';\n".format(databaseversion))
         for element in document:
           if 'status' not in element or element['status'] == 'normal':
-            grid = element["grid"] if element.has_key("grid") else "sl os"
+            grid = element["grid"] if "grid" in element else "sl os"
             if element["cat"] == "event":
                 outf.write("&print_snippet($template_events, 'events', $version, '{0}', '{1}', '{2}');\n"
                  .format(grid, element["name"], get_signature(element)))
