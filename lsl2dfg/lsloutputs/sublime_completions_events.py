@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import sys
+import codecs
 
 def output(document, defaultdescs, databaseversion, infilename, outfilename, lang, tag):
 
@@ -32,7 +33,7 @@ def output(document, defaultdescs, databaseversion, infilename, outfilename, lan
       inf.close()
 
   if outfilename is not None:
-    outf = open(outfilename, "w")
+    outf = codecs.open(outfilename, "w", "utf-8")
   else:
     outf = sys.stdout
 

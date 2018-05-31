@@ -5,6 +5,7 @@
 # types and values.
 
 import sys
+import codecs
 
 def output(document, defaultdescs, databaseversion, infilename, outfilename, lang, tag):
 
@@ -35,7 +36,7 @@ def output(document, defaultdescs, databaseversion, infilename, outfilename, lan
     elif (elemtype == "c"):
       sign = "\"{name}\": \"Constant: {type} <a href=\\\"{urlprefix}{name}\\\">{name}</a> = {value}"\
         .format(name=element["name"], type=element["type"], urlprefix=urlprefix, \
-                value="[EOF]" if (element["name"] == "EOF") else element["value"].encode('ascii', errors='backslashreplace').replace('\\','\\\\'))
+                value="[EOF]" if (element["name"] == "EOF") else element["value"].encode('ascii', errors='backslashreplace').decode('utf8', errors='ignore'))
     elif (elemtype == "e"):
       sign = "\"{name}\": \"Event: <a href=\\\"{urlprefix}{name}\\\">{name}</a>("\
         .format(name=element["name"], type=element["type"] if "type" in element else "void", \
@@ -104,7 +105,7 @@ def output(document, defaultdescs, databaseversion, infilename, outfilename, lan
       inf.close()
 
   if outfilename is not None:
-    outf = open(outfilename, "w")
+    outf = codecs.open(outfilename, "w", "utf8")
   else:
     outf = sys.stdout
 
