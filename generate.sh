@@ -6,8 +6,8 @@ rm kwdb.xml
 
 mkdir -p "$OUTPUT_DIR/snippets/events"
 
-curl https://bitbucket.org/api/1.0/repositories/Sei_Lisa/kwdb/raw/default/lsl2dfg/LSL2dfg.py -o lsl2dfg/LSL2dfg.py
-curl https://bitbucket.org/api/1.0/repositories/Sei_Lisa/kwdb/raw/default/database/kwdb.xml -o kwdb.xml
+curl https://bitbucket.org/api/2.0/repositories/Sei_Lisa/kwdb/src/default/lsl2dfg/LSL2dfg.py -o lsl2dfg/LSL2dfg.py
+curl https://bitbucket.org/api/2.0/repositories/Sei_Lisa/kwdb/src/default/database/kwdb.xml -o kwdb.xml
 
 # for LSL/OSSL plugin
 python lsl2dfg/LSL2dfg.py -u -d kwdb.xml -f sublime_completions_constants -g sl -i inputs/LSLConstants.sublime-completions.in -o "$OUTPUT_DIR/LSLConstants.sublime-completions" -y
