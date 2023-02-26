@@ -15,7 +15,6 @@ def output(document, defaultdescs, databaseversion, infilename, outfilename, lan
   for element in document:
     if 'status' not in element or element['status'] == 'normal':
       if element["cat"] == "constant":
-        constants.append(element)
         if element["type"] == "integer":
           constants_integer.append(element)
         elif element["type"] == "string":
@@ -50,10 +49,7 @@ def output(document, defaultdescs, databaseversion, infilename, outfilename, lan
 
   try:
     for line in inputlines:
-      if line.startswith("<<< CONSTANTS >>>"):
-        for entry in constants:
-          outf.write("$ra->add( '{0}' );\n".format(entry["name"]))
-      elif line.startswith("<<< INTEGER CONSTANTS >>>"):
+      if line.startswith("<<< INTEGER CONSTANTS >>>"):
         for entry in constants_integer:
           outf.write("$ra->add( '{0}' );\n".format(entry["name"]))          
       elif line.startswith("<<< STRING CONSTANTS >>>"):
