@@ -1,4 +1,4 @@
-This is the tool which fetches newest version of LSL/OSSL keywords from [kwdb](https://bitbucket.org/Sei_Lisa/kwdb) and convert it for use of [LSL/OSSL Bundle for Sublime Text](https://github.com/Makopo/sublime-text-lsl).
+This is the tool which fetches newest version of LSL/OSSL keywords from [kwdb](https://github.com/Sei-Lisa/kwdb) and convert it for use of [LSL/OSSL Bundle for Sublime Text](https://github.com/Makopo/sublime-text-lsl).
 
 For now, simply run ./generate.sh script.
 
