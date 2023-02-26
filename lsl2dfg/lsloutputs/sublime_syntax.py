@@ -4,7 +4,6 @@ import sys
 
 def output(document, defaultdescs, databaseversion, infilename, outfilename, lang, tag):
 
-  constants = []
   constants_integer = []
   constants_string = []
   constants_float = []
