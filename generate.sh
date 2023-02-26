@@ -16,7 +16,7 @@ python lsl2dfg/LSL2dfg.py -u -d kwdb.xml -f sublime_completions_functions -g sl 
 python lsl2dfg/LSL2dfg.py -u -d kwdb.xml -f sublime_completions_functions -g os -i inputs/OSSLFunctions.sublime-completions.in -o "$OUTPUT_DIR/OSSLFunctions.sublime-completions" -y
 python lsl2dfg/LSL2dfg.py -u -d kwdb.xml -f sublime_completions_events -g sl,os -i inputs/makesnippets.pl.in | perl
 python lsl2dfg/LSL2dfg.py -u -d kwdb.xml -f sublime_syntax -g sl -t LSL -i inputs/convertkeywords.pl.in | perl > "$OUTPUT_DIR/LSL.sublime-syntax"
-python lsl2dfg/LSL2dfg.py -u -d kwdb.xml -f sublime_syntax -g os -t OSSL -i inputs/convertkeywords.pl.in | perl > "$OUTPUT_DIR/LSL.sublime-syntax"
+python lsl2dfg/LSL2dfg.py -u -d kwdb.xml -f sublime_syntax -g os -t OSSL -i inputs/convertkeywords.pl.in | perl > "$OUTPUT_DIR/OSSL.sublime-syntax"
 
 # DEPRECATED - still works but I recommend to create your own scripts if you use this script for other editors
 # python lsl2dfg/LSL2dfg.py -u -d kwdb.xml -f sublime_tmLanguage -g sl -t LSL -i inputs/convertkeywords.pl.in | perl > "$OUTPUT_DIR/lsl.tmLanguage"
