@@ -4,14 +4,24 @@ import sys
 
 def output(document, defaultdescs, databaseversion, infilename, outfilename, lang, tag):
 
-  constants = []
+  constants_integer = []
+  constants_string = []
+  constants_float = []
+  constants_compound = []
   events = []
   functions = []
   invalids = []
   for element in document:
     if 'status' not in element or element['status'] == 'normal':
       if element["cat"] == "constant":
-        constants.append(element)
+        if element["type"] == "integer":
+          constants_integer.append(element)
+        elif element["type"] == "string":
+          constants_string.append(element)
+        elif element["type"] == "float":
+          constants_float.append(element)
+        elif element["type"] in ["vector", "rotation"]:
+          constants_compound.append(element)
       elif element["cat"] == "event":
         events.append(element)
       elif element["cat"] == "function":
@@ -38,9 +48,18 @@ def output(document, defaultdescs, databaseversion, infilename, outfilename, lan
 
   try:
     for line in inputlines:
-      if line.startswith("<<< CONSTANTS >>>"):
-        for entry in constants:
-          outf.write("$ra->add( '{0}' );\n".format(entry["name"]))
+      if line.startswith("<<< INTEGER CONSTANTS >>>"):
+        for entry in constants_integer:
+          outf.write("$ra->add( '{0}' );\n".format(entry["name"]))          
+      elif line.startswith("<<< STRING CONSTANTS >>>"):
+        for entry in constants_string:
+          outf.write("$ra->add( '{0}' );\n".format(entry["name"]))          
+      elif line.startswith("<<< FLOAT CONSTANTS >>>"):
+        for entry in constants_float:
+          outf.write("$ra->add( '{0}' );\n".format(entry["name"]))          
+      elif line.startswith("<<< COMPOUND CONSTANTS >>>"):
+        for entry in constants_compound:
+          outf.write("$ra->add( '{0}' );\n".format(entry["name"]))          
       elif line.startswith("<<< EVENTS >>>"):
         for entry in events:
           outf.write("$ra->add( '{0}' );\n".format(entry["name"]))

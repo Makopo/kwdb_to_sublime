@@ -2,10 +2,22 @@ use Regexp::Assemble;
 use Text::Template;
 
 <<< VERSION >>>
-  
+
 my $ra = Regexp::Assemble->new;
-<<< CONSTANTS >>>
-my $constants = $ra->as_string;
+<<< INTEGER CONSTANTS >>>
+my $constants_integer = $ra->as_string;
+
+my $ra = Regexp::Assemble->new;
+<<< STRING CONSTANTS >>>
+my $constants_string = $ra->as_string;
+
+my $ra = Regexp::Assemble->new;
+<<< FLOAT CONSTANTS >>>
+my $constants_float = $ra->as_string;
+
+my $ra = Regexp::Assemble->new;
+<<< COMPOUND CONSTANTS >>>
+my $constants_compound = $ra->as_string;
 
 $ra = Regexp::Assemble->new;
 <<< FUNCTIONS >>>
@@ -23,7 +35,10 @@ my $template = Text::Template->new(SOURCE => $infile)
   or die "Couldn't construct template: $Text::Template::ERROR";
 
 my %vars = (version => $version,
-            valid_constants => $constants,
+            valid_constants_integer => $constants_integer,
+            valid_constants_string => $constants_string,
+            valid_constants_float => $constants_float,
+            valid_constants_compound => $constants_compound,
             valid_functions => $functions,
             valid_events => $events,
             invalids => $invalids);

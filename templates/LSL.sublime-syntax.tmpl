@@ -125,13 +125,13 @@ contexts:
     - include: commentblock
     - include: commentline
   llconstant:
-    - match: '\b[@--$valid_constants--@]\b'
+    - match: '\b[@--$valid_constants_integer--@]\b'
       scope: constant.language.ll.integer.lsl
-    - match: \b(TEXTURE_(BLANK|DEFAULT|MEDIA|PLYWOOD|TRANSPARENT))\b
+    - match: '\b[@--$valid_constants_string--@]\b'
       scope: constant.language.ll.string.lsl
-    - match: \b(PI|TWO_PI|PI_BY_TWO|DEG_TO_RAD|RAD_TO_DEG|SQRT2)\b
+    - match: '\b[@--$valid_constants_float--@]\b'
       scope: constant.language.ll.float.lsl
-    - match: \b(ZERO_(VECTOR|ROTATION))\b
+    - match: '\b[@--$valid_constants_compound--@]\b'
       scope: constant.language.ll.compound.lsl
   llfunction:
     - match: '\b[@--$valid_functions--@]\b'
